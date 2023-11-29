@@ -58,7 +58,7 @@ function App() {
       <AuthProvider>
         <div className="App">
           <header className="App-header">
-            <h1>무럭 AI 진단</h1>
+            <h1>무럭 AI 진단 플랫폼</h1>
           </header>
           <main>
             <Routes>
