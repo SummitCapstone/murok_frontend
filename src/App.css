@@ -282,7 +282,7 @@ a:hover {
   .font-controls {
     right: 10px; /* 오른쪽 가장자리에서의 위치를 유지 */
     bottom: 10px; /* 하단 가장자리에서의 위치를 유지 */
-    position: fixed; /* 모바일에서 폰트 조정 버튼을 고정 */
+    position: absolute; /* 모바일에서 폰트 조정 버튼을 고정 */
   }
 
   /* 모바일 화면에서 홈 버튼의 위치 조정이 필요하지 않으므로 제거 */
