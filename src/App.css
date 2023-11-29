@@ -6,6 +6,7 @@
   font-family: 'Roboto', sans-serif;
   /* 폰트 변경 */
   display: flex;
+  padding: 10px; /* 전체 앱의 패딩을 줄임 */
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-between;
@@ -20,7 +21,7 @@
   background-color: #66BB6A;
   /* 헤더 색상을 #66BB6A에서 #64b5f6로 변경 */
   /* padding: 20px; */
-  padding: 1vh 0; /* 패딩을 vh 단위로 설정하여 뷰포트 높이에 따라 조절 */
+  padding: 2vh 0; /* 패딩을 vh 단위로 설정하여 뷰포트 높이에 따라 조절 */
   color: white;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -31,13 +32,14 @@
 .menu-item {
   display: block;
   /* 메뉴 아이템을 블록 요소로 만들어 각각 새 줄에 표시 */
-  width: 80%;
+  width: calc(100% - 20px);
   /* 너비 조정 */
   background-color: white;
+  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
   /* 배경색 변경 */
   margin: 10px auto;
   /* 상하 마진 10px, 좌우 마진 자동(가운데 정렬) */
-  padding: 15px;
+  padding: 20px;
   /* 패딩 조정 */
   text-align: center;
   border-radius: 8px;
@@ -47,7 +49,7 @@
   text-decoration: none;
   color: #34495e;
   /* 글자색 변경 */
-  font-size: 1rem;
+  font-size: 1.2rem;
   /* 글자 크기 조정 */
   font-weight: 500;
   /* 글자 무게 변경 */
@@ -69,7 +71,7 @@
   background-color: #66BB6A;
   /* 푸터 색상을 #66BB6A에서 #64b5f6로 변경 */
   /* padding: 10px 0; */
-  padding: 1vh 0; /* 패딩을 vh 단위로 설정하여 뷰포트 높이에 따라 조절 */
+  padding: 2vh 0; /* 패딩을 vh 단위로 설정하여 뷰포트 높이에 따라 조절 */
   color: white;
   text-align: center;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -255,7 +257,7 @@ a:hover {
 /* 반응형 디자인을 위한 미디어 쿼리 추가 */
 @media (max-width: 768px) {
   .menu-item {
-    width: 90%; /* 모바일에서 메뉴 아이템 너비 조정 */
+    width: calc(100% - 10px); /* 모바일에서 메뉴 아이템 너비 조정 */
   }
 
   .App-header, .App-footer {
