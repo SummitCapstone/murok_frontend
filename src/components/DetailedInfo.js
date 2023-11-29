@@ -20,16 +20,15 @@ function DetailedInfo() {
   return (
     <div className="detailed-info">
       <h1>{info ? `${info.cropName} - ${info.sickNameKor} (${info.sickNameEng})` : '로딩 중...'}</h1>
-      <p><strong>발달 조건:</strong> {info ? info.developmentCondition : ''}</p>
-      <p><strong>예방 방법:</strong> {info ? info.preventionMethod : ''}</p>
-      <p><strong>증상:</strong> {info ? info.symptoms : ''}</p>
-      {info && info.infectionRoute && <p><strong>감염 경로:</strong> {info.infectionRoute}</p>}
+      <strong>발달 조건:</strong><div dangerouslySetInnerHTML={{ __html: info ? info.developmentCondition : '' }}></div>
+      <strong>예방 방법:</strong><div dangerouslySetInnerHTML={{ __html: info ? info.preventionMethod : '' }}></div>
+      <strong>증상:</strong><div dangerouslySetInnerHTML={{ __html: info ? info.symptoms : '' }}></div>
+      {info && info.infectionRoute && <div dangerouslySetInnerHTML={{ __html: info.infectionRoute }}></div>}
       {info && info.thumbImg && (
         <div>
           <img src={info.thumbImg} alt={`${info.sickNameKor} 이미지`} />
         </div>
       )}
-      {/* 필요에 따라 추가 정보 표시 */}
     </div>
   );
 }
