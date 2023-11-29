@@ -5,7 +5,7 @@ import DiagnosisHistory from './components/DiagnosisHistory';
 import Login from './components/Login';
 
 import DiagnosisResult from './components/DiagnosisResult';
-
+import DetailedInfo from './components/DetailedInfo';
 import DiagnosisPage from './components/DiagnosisPage';
 
 import ContactUs from './components/ContactUs';
@@ -83,6 +83,7 @@ function App() {
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/login" element={<Login />} />
               <Route path="/diagnosis-result" element={<DiagnosisResult />} />
+              <Route path="/detailed-info" element={<DetailedInfo />} />
             </Routes>
           </main>
           <footer className="App-footer">

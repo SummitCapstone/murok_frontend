@@ -96,3 +96,5 @@ const diseasesData = [
         "oriImg": "http://ncpms.rda.go.kr/npmsAPI/thumbnailViewer2.mo?uploadSpec=npms&uploadSubDirectory=/photo/sickns/&imageFileName=e8747a8695d576f25ba603e83dbd775eeaebe819bfed7a1f6d6c115444382f0c23d8583d7cd665011471fcbb0db6fd9e40f049fe95cef94753c874168c2b4b93fe234dbb9b0b97e48b03b12ae0114e5d"
     }
 ];
+
+export default diseasesData;

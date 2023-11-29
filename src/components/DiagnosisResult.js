@@ -47,7 +47,11 @@ function DiagnosisResult() {
 
   // '자세한 정보' 페이지로 이동하는 함수
   const goToDetailedInfo = () => {
-    navigate('/detailed-info', { state: { cropName: '딸기', sickNameKor: '잿빛곰팡이병' } });
+    // 테스트를 위해 직접 값을 설정
+    const testCropName = '딸기';
+    const testSickNameKor = '잿빛곰팡이병';
+
+    navigate('/detailed-info', { state: { cropName: testCropName, sickNameKor: testSickNameKor } });
   };
 
 
