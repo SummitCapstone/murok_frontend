@@ -1,0 +1,17 @@
+.diagnosis-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.diagnosis-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px 0;
+  width: 80%;
+}
+
+.diagnosis-title, .diagnosis-date {
+  margin-bottom: 10px;
+}

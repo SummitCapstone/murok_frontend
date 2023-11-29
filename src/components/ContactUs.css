@@ -1,0 +1,85 @@
+.contact-us-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.contact-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-title {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.contact-message {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  resize: vertical; /* 사용자가 세로 방향으로만 크기를 조절할 수 있게 합니다. */
+}
+
+.contact-submit {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.contact-submit:hover {
+  background-color: #45a049;
+}
+
+/* 팝업창 설정 */
+
+.popup {
+  position: fixed;        /* 고정 위치 */
+  top: 0;                 /* 화면 최상단에서 시작 */
+  left: 0;                /* 화면 최좌측에서 시작 */
+  width: 100%;            /* 전체 넓이를 채움 */
+  height: 100%;           /* 전체 높이를 채움 */
+  background-color: rgba(0, 0, 0, 0.7);  /* 반투명한 검은 배경 */
+  display: flex;          /* Flexbox를 활용해 중앙 정렬 */
+  align-items: center;    /* 수직 중앙 정렬 */
+  justify-content: center;/* 수평 중앙 정렬 */
+  z-index: 1000;          /* 다른 요소들 위에 표시되게 함 */
+}
+
+.popup-content {
+  width: 80%;             /* 팝업 내용의 넓이 */
+  max-width: 400px;       /* 최대 넓이 설정 */
+  padding: 20px;          /* 패딩 */
+  background-color: #fff; /* 배경색 */
+  border-radius: 10px;    /* 모서리 둥글게 */
+  text-align: center;     /* 텍스트 중앙 정렬 */
+}
+
+.close-btn {
+  position: absolute;     /* 팝업 내부의 절대 위치 */
+  top: 10px;              /* 상단에서 10px 떨어진 위치 */
+  right: 10px;            /* 오른쪽에서 10px 떨어진 위치 */
+  font-size: 24px;        /* 글자 크기 */
+  cursor: pointer;        /* 마우스 커서를 포인터로 */
+}
+
+.confirm-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.confirm-btn:hover {
+  background-color: #45a049;
+}

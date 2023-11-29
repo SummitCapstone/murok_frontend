@@ -1,0 +1,91 @@
+/* CropSelection.css */
+
+.crop-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  font-family: 'Helvetica Neue', sans-serif; /* 세련된 폰트로 변경 */
+}
+
+.crops {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 80%;
+  max-width: 600px; /* 너무 큰 화면에서도 적당한 크기를 유지합니다. */
+}
+
+.crop-box {
+  background-color: #f7f7f7;
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s; /* 호버 효과와 함께 transform 효과를 추가 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.crop-box:hover {
+  background-color: #e7e7e7;
+  transform: translateY(-5px); /* 약간 위로 움직여서 클릭할 수 있음을 나타냅니다. */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* 그림자를 더 강조하여 입체감을 줍니다. */
+}
+
+/* 선택된 항목에 대한 시각적 표시 */
+.crop-box.active {
+  background-color: #dedede;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* 더 강한 그림자로 선택됨을 나타냅니다. */
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 15px 0;
+}
+
+h2 {
+  color: #333; /* 제목 색상 변경 */
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #555; /* 선택한 작물 제목 색상 변경 */
+}
+
+/* CropSelection.css 파일에 다음 스타일을 추가하세요. */
+.딸기.active {
+  color: #FF0000; /* 딸기 색상 */
+}
+
+.고추.active {
+  color: #FF5722; /* 고추 색상 */
+}
+
+.토마토.active {
+  color: #F44336; /* 토마토 색상 */
+}
+
+.오이.active {
+  color: #4CAF50; /* 오이 색상 */
+}
+
+.crop-box {
+  /* 이전 스타일 유지 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.crop-box img {
+  width: 50px; /* 이미지 크기 조절 */
+  height: 50px; /* 이미지 크기 조절 */
+  margin-bottom: 10px; /* 텍스트와의 간격 조절 */
+}
+
+.crop-box.active {
+  border: 2px solid; /* 선택된 작물을 강조하기 위한 테두리 */
+  /* borderColor는 인라인 스타일로 동적 할당됩니다. */
+}

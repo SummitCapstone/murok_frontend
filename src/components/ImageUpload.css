@@ -1,0 +1,81 @@
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff; /* 배경색 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  max-width: 500px; /* 최대 너비 설정 */
+  margin: auto; /* 가운데 정렬 */
+}
+
+.image-upload-box {
+  position: relative; /* 이미지 위치 조정을 위해 */
+  background-color: #f9f9f9;
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px dashed #d9d9d9; /* 점선 테두리 추가 */
+  margin: 20px 0;
+  transition: background-color 0.2s, border-color 0.2s; /* 부드러운 색상 전환 */
+}
+
+.image-upload-box img {
+  max-width: 100%; /* 이미지 최대 너비 조정 */
+  height: auto; /* 비율 유지 */
+  display: block; /* 블록 요소로 변경 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.image-size-slider {
+  margin-top: 10px; /* 슬라이더 상단 여백 */
+}
+
+.image-upload-box:hover {
+  background-color: #e8e8e8; /* 마우스 오버 시 색 변경 */
+  border-color: #c8c8c8; /* 마우스 오버 시 테두리 색 변경 */
+}
+
+.diagnose-button {
+  padding: 15px 30px;
+  background-color: #4CAF50; /* 진한 녹색으로 변경 */
+  color: white;
+  border: none;
+  border-radius: 20px; /* 둥근 버튼으로 변경 */
+  cursor: pointer;
+  font-size: 16px; /* 글씨 크기 조정 */
+  font-weight: bold; /* 글씨 굵게 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  transition: background-color 0.2s, box-shadow 0.2s; /* 부드러운 색상 전환과 그림자 효과 */
+}
+
+.diagnose-button:hover {
+  background-color: #43A047; /* 마우스 오버 시 색 변경 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 마우스 오버 시 그림자 변경 */
+}
+
+.separator {
+  width: 80%; /* 구분선 너비 줄이기 */
+  height: 2px; /* 구분선 두께 늘리기 */
+  background-color: #ccc;
+  margin: 20px 0;
+  opacity: 0.7; /* 구분선 투명도 */
+}
+/* 이미지 파일 명 표시 */
+.file-name {
+  margin-top: 10px; /* 상단 여백 추가 */
+  font-size: 14px; /* 글씨 크기 조정 */
+  color: #666; /* 글씨 색상 */
+  word-break: break-all; /* 긴 파일 이름 처리 */
+}
+
+/* 이미지 미리보기 스타일 */
+.image-preview {
+  max-width: 100%; /* 최대 너비 제한 */
+  height: auto; /* 원본 이미지 비율 유지 */
+  margin-top: 10px; /* 상단 여백 추가 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  border: 1px solid #ddd; /* 경계선 추가 */
+}
