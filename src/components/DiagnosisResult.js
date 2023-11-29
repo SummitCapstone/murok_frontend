@@ -49,7 +49,7 @@ function DiagnosisResult() {
   const goToDetailedInfo = () => {
     // 테스트를 위해 직접 값을 설정
     const testCropName = '오이';
-    const testSickNameKor = '노균병';
+    const testSickNameKor = '흰가루병';
 
     navigate('/detailed-info', { state: { cropName: testCropName, sickNameKor: testSickNameKor } });
   };
