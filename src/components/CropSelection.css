@@ -36,6 +36,7 @@
 .crop-box.active {
   background-color: #dedede;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* 더 강한 그림자로 선택됨을 나타냅니다. */
+  border: 2px solid; /* 선택된 작물을 강조하기 위한 테두리 */
 }
 
 .separator {
@@ -54,7 +55,6 @@ h3 {
   color: #555; /* 선택한 작물 제목 색상 변경 */
 }
 
-/* CropSelection.css 파일에 다음 스타일을 추가하세요. */
 .딸기.active {
   color: #FF0000; /* 딸기 색상 */
 }

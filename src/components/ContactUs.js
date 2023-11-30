@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './ContactUs.css';
 
 function ContactUs() {
@@ -6,11 +7,21 @@ function ContactUs() {
   const [message, setMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false); // 팝업 표시 여부를 위한 state
 
-  const handleSubmit = () => {
-    setShowPopup(true); // 팝업 표시
-    // TODO: 백엔드에 데이터 전송하는 부분을 여기에 구현할 수 있습니다.
-    // alert('문의 내용이 전송되었습니다.');
+  const handleSubmit = async () => {
+    try {
+      // 백엔드에 데이터 전송
+      const response = await axios.post('https://api.murok.munwon.net/feedback/compose/', {
+        title: title,
+        description: message,
+        // 추가적으로 필요한 데이터가 있다면 여기에 추가
+      });
+      console.log(response.data); // 응답 로그 출력
+      setShowPopup(true); // 팝업 표시
+    } catch (error) {
+      console.error('문의하기 오류:', error);
+    }
   };
+
 
   const handleClosePopup = () => {
     setShowPopup(false); // 팝업 숨김

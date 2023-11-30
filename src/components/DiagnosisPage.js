@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CropSelection from './CropSelection';
 import ImageUpload from './ImageUpload';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'; // UUID 생성을 위한 라이브러리 임포트
 import './DiagnosisPage.css';
+import { UuidContext } from '../contexts/UuidContext';
 
 function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelectedImage }) {
+    const uuid = useContext(UuidContext);
+
     useEffect(() => {
         setSelectedCrop(null);
         setSelectedImage(null);
@@ -28,12 +31,12 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
             const response = await axios.post('https://api.murok.munwon.net/diagnosis/request/', formData, {
                 headers: {
                     'X-Request-Id': uuidv4(), // 첫 번째 UUID 생성
-                    'X-Request-User-Id': uuidv4(), // 두 번째 UUID 생성
+                    'X-Request-User-Id': uuid, // 두 번째 UUID 생성
                 }
             });
             const data = response.data;
             console.log("Verified successfully!");
-            navigate("/diagnosis-result", { state: { data } });
+            navigate("/diagnosis-result", { state: { data, selectedImage } });
         } catch (error) {
             console.error('Error:', error);
         }

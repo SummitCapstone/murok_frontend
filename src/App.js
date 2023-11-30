@@ -17,6 +17,8 @@ import readingGlassesImage from './assets/readingglasses.png';
 import { AuthProvider } from './contexts/AuthContext';
 import AuthLinks from './contexts/AuthLinks'; // 새로 만든 컴포넌트 임포트
 
+// UUID 관리
+import { UuidProvider } from './contexts/UuidContext';
 
 import './App.css';
 
@@ -56,59 +58,61 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <div className="App">
-          <header className="App-header">
-            <h1>무럭 AI 진단 플랫폼</h1>
-          </header>
-          <main>
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <Link to="/start-diagnosis" className="menu-item">진단 시작하기</Link>
-                  <Link to="/diagnosis-history" className="menu-item">나의 진단이력</Link>
-                  <Link to="/contact" className="menu-item">문의하기</Link>
-                  {/* <Link to="/login" className="menu-item">로그인</Link> */}
-                  <AuthLinks /> {/* 여기에 AuthLinks 컴포넌트 추가 */}
-                </>
-              } />
-              <Route path="/start-diagnosis" element={
-                <DiagnosisPage
-                  selectedCrop={selectedCrop}
-                  setSelectedCrop={setSelectedCrop}
-                  selectedImage={selectedImage}
-                  setSelectedImage={setSelectedImage}
-                />
-              } />
-              <Route path="/diagnosis-history" element={<DiagnosisHistory />} />
-              <Route path="/contact" element={<ContactUs />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/diagnosis-result" element={<DiagnosisResult />} />
-              <Route path="/detailed-info" element={<DetailedInfo />} />
-            </Routes>
-          </main>
-          <footer className="App-footer">
-            <div className="footer-controls">
-              <div className="home-button-container">
-                <Link to="/">
-                  <img src={homeButtonImage} alt="홈으로 가기" className="home-button-image" />
-                </Link>
+        <UuidProvider>
+          <div className="App">
+            <header className="App-header">
+              <h1>무럭 AI 진단 플랫폼</h1>
+            </header>
+            <main>
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    <Link to="/start-diagnosis" className="menu-item">진단 시작하기</Link>
+                    <Link to="/diagnosis-history" className="menu-item">나의 진단이력</Link>
+                    <Link to="/contact" className="menu-item">문의하기</Link>
+                    {/* <Link to="/login" className="menu-item">로그인</Link> */}
+                    <AuthLinks /> {/* 여기에 AuthLinks 컴포넌트 추가 */}
+                  </>
+                } />
+                <Route path="/start-diagnosis" element={
+                  <DiagnosisPage
+                    selectedCrop={selectedCrop}
+                    setSelectedCrop={setSelectedCrop}
+                    selectedImage={selectedImage}
+                    setSelectedImage={setSelectedImage}
+                  />
+                } />
+                <Route path="/diagnosis-history" element={<DiagnosisHistory />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/diagnosis-result" element={<DiagnosisResult />} />
+                <Route path="/detailed-info" element={<DetailedInfo />} />
+              </Routes>
+            </main>
+            <footer className="App-footer">
+              <div className="footer-controls">
+                <div className="home-button-container">
+                  <Link to="/">
+                    <img src={homeButtonImage} alt="홈으로 가기" className="home-button-image" />
+                  </Link>
+                </div>
+                <div className="font-controls">
+                  <button onClick={handleFontAdjustment} className="adjust-font-button">
+                    <img src={readingGlassesImage} alt="글자 크기 조절" />
+                  </button>
+                  {isFontAdjusterVisible && (
+                    <div className="font-adjuster-popup">
+                      <button onClick={() => adjustFontSize('increase')}>+</button>
+                      <button onClick={() => adjustFontSize('decrease')}>-</button>
+                      <button onClick={handleReset}>초기화</button>
+                      <button onClick={handleFontAdjustment} className="close-font-adjuster">닫기</button>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="font-controls">
-                <button onClick={handleFontAdjustment} className="adjust-font-button">
-                  <img src={readingGlassesImage} alt="글자 크기 조절" />
-                </button>
-                {isFontAdjusterVisible && (
-                  <div className="font-adjuster-popup">
-                    <button onClick={() => adjustFontSize('increase')}>+</button>
-                    <button onClick={() => adjustFontSize('decrease')}>-</button>
-                    <button onClick={handleReset}>초기화</button>
-                    <button onClick={handleFontAdjustment} className="close-font-adjuster">닫기</button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </footer>
-        </div>
+            </footer>
+          </div>
+        </UuidProvider>
       </AuthProvider>
     </Router>
   );

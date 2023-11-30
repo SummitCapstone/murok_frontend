@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo, useState } from 'react'; // useMemo 추가
+import React, { useRef, useEffect, useState } from 'react'; // useMemo 추가
 import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import Modal from './Modal'; // Modal 컴포넌트 임포트
@@ -24,11 +24,21 @@ function DiagnosisResult() {
   const [data, setData] = useState([]);
   const [imageURL, setImageURL] = useState(null);
 
+  // location에서 사용자가 선택한 이미지 받아오기
+  const selectedImage = location.state && location.state.selectedImage
+    ? URL.createObjectURL(location.state.selectedImage)
+    : null;
+
+  useEffect(() => {
+    console.log("Selected Image:", selectedImage);
+  }, [selectedImage]);
+
+
   useEffect(() => {
     if (location.state && location.state.data) {
       const receivedData = location.state.data;
       setDiagnosisData(receivedData);
-      
+
       // 콘솔에 데이터 확인
       console.log("Received Data:", receivedData);
 
@@ -109,31 +119,42 @@ function DiagnosisResult() {
   return (
     <div className="diagnosis-result">
       <h2>진단 결과</h2>
-      <div className="image-box">
-        {imageURL ? <img src={imageURL} alt="Crop Image" /> : '이미지를 불러오는 중...'}
-      </div>
-      <div className="diagram">
-        <canvas ref={canvasRef} width={180} height={180}></canvas>
-        <div className="probability-ranking">
-          {data.map((item, index) => (
-            <div key={index} className="probability-item">
-              <span className="probability-label">{item.label}</span>
-              <span className="probability-value">{item.value}%</span>
-              <div className="probability-color" style={{ backgroundColor: item.color }}></div>
-            </div>
-          ))}
+      <div className="image-container">
+        <div className="user-image-box">
+          {selectedImage ? (
+            <img src={selectedImage} alt="User's Crop" />
+          ) : (
+            '사용자 이미지를 불러오는 중...'
+          )}
+        </div>
+        <div className="server-image-box">
+          {imageURL ? <img src={imageURL} alt="Server's Crop" /> : '서버 이미지를 불러오는 중...'}
         </div>
       </div>
-      <div className="result-buttons">
-        <button onClick={goToDetailedInfo}>자세한 정보</button>
-        <button onClick={openModal}>문의하기</button>
+      <div className="diagnosis-content">
+        <div className="diagram">
+          <canvas ref={canvasRef} width={180} height={180}></canvas>
+          <div className="probability-ranking">
+            {data.map((item, index) => (
+              <div key={index} className="probability-item">
+                <span className="probability-label">{item.label}</span>
+                <span className="probability-value">{item.value}%</span>
+                <div className="probability-color" style={{ backgroundColor: item.color }}></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="result-buttons">
+          <button onClick={goToDetailedInfo}>자세한 정보</button>
+          <button onClick={openModal}>문의하기</button>
+        </div>
+        {showModal && (
+          <Modal show={showModal} onClose={closeModal}>
+            <ContactUs />
+          </Modal>
+        )}
+        <button onClick={saveDiagnosisAsImage} className="save-diagnosis">진단 내용 저장</button>
       </div>
-      {showModal && (
-        <Modal show={showModal} onClose={closeModal}>
-          <ContactUs />
-        </Modal>
-      )}
-      <button onClick={saveDiagnosisAsImage} className="save-diagnosis">진단 내용 저장</button>
     </div>
   );
 }

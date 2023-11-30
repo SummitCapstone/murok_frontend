@@ -10,7 +10,7 @@ import cucumberIcon from '../assets/cucumber-icon.png';
 function CropSelection({ selectedCrop, setSelectedCrop }) {
 
   const getBoxClass = (crop) => {
-    return `crop-box ${crop} ${selectedCrop === crop ? 'active' : ''}`;
+    return `crop-box ${cropEnglishNames[crop]} ${selectedCrop === cropEnglishNames[crop] ? 'active' : ''}`;
   };
 
   const cropEnglishNames = {
