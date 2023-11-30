@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import Modal from './Modal'; // Modal 컴포넌트 임포트
 import ContactUs from './ContactUs'; // ContactUs 컴포넌트 임포트
+import DetailedInfo from './DetailedInfo';
 import './DiagnosisResult.css';
 
 // 랜덤 색상 생성 함수
@@ -20,6 +21,7 @@ function DiagnosisResult() {
   const navigate = useNavigate();
   const location = useLocation(); // useLocation 추가
   const [showModal, setShowModal] = useState(false);
+  const [showDetailedModal, setShowDetailedModal] = useState(false);
   const [diagnosisData, setDiagnosisData] = useState(null); // 진단 데이터 상태 추가
   const [data, setData] = useState([]);
   const [imageURL, setImageURL] = useState(null);
@@ -91,18 +93,21 @@ function DiagnosisResult() {
     setShowModal(false);
   };
 
+  const openDetailedModal = () => {
+    setShowDetailedModal(true);
+  };
+
+  const closeDetailedModal = () => {
+    setShowDetailedModal(false);
+  };
+
   // '자세한 정보' 페이지로 이동하는 함수
   const goToDetailedInfo = () => {
-    // diagnosisData와 diagnosisData.probability_ranking이 존재하는지 확인
     if (!diagnosisData || !diagnosisData.probability_ranking || !diagnosisData.probability_ranking.crop_status_possibility_rank) {
       alert('자세한 정보를 가져올 수 없습니다.');
       return;
     }
-
-    const cropName = diagnosisData.crop_category;
-    const sickNameKor = diagnosisData.probability_ranking.crop_status_possibility_rank[0].state; // 가장 높은 확률의 상태
-
-    navigate('/detailed-info', { state: { cropName, sickNameKor } });
+    openDetailedModal();
   };
 
   // 진단 결과를 이미지로 저장하는 함수
@@ -151,6 +156,14 @@ function DiagnosisResult() {
         {showModal && (
           <Modal show={showModal} onClose={closeModal}>
             <ContactUs />
+          </Modal>
+        )}
+        {showDetailedModal && (
+          <Modal show={showDetailedModal} onClose={closeDetailedModal}>
+            <DetailedInfo
+              cropName={diagnosisData.crop_category}
+              sickNameKor={diagnosisData.probability_ranking.crop_status_possibility_rank[0].state}
+            />
           </Modal>
         )}
         <button onClick={saveDiagnosisAsImage} className="save-diagnosis">진단 내용 저장</button>

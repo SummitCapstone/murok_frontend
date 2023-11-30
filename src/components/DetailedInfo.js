@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // useLocation 훅 임포트
 import diseasesData from './diseasesData';
 import './DetailedInfo.css';
 
-function DetailedInfo() {
+function DetailedInfo({ cropName, sickNameKor }) { // props로 데이터 받기
   const [info, setInfo] = useState(null);
-  const location = useLocation();
-  // useLocation을 사용하여 전달된 작물명과 병해명을 가져옵니다.
-  const { cropName, sickNameKor } = location.state || {};
+
+  useEffect(() => {
+    const diseaseInfo = diseasesData.find(
+      disease => disease.cropName === cropName && disease.sickNameKor === sickNameKor
+    );
+    setInfo(diseaseInfo);
+  }, [cropName, sickNameKor]);
 
   useEffect(() => {
     // 데이터에서 해당 작물의 병해 정보를 찾습니다.
