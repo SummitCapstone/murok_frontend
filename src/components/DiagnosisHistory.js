@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UuidContext } from '../contexts/UuidContext';
+import { useAuth } from '../contexts/AuthContext';
 import './DiagnosisHistory.css';
 
 function DiagnosisHistory() {
   const [history, setHistory] = useState([]);
   const uuid = useContext(UuidContext); // UuidContext에서 UUID 가져오기
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
+    if (!isLoggedIn) return;
+
     const SERVER_URL = 'https://api.murok.munwon.net';
 
     axios.get(`${SERVER_URL}/diagnosis-history`, {
@@ -19,7 +23,14 @@ function DiagnosisHistory() {
       setHistory(response.data);
     })
     .catch(error => console.error('Error fetching history:', error));
-  }, [uuid]); // UUID가 변경될 때마다 useEffect 재실행
+  }, [uuid, isLoggedIn]); // UUID가 변경될 때마다 useEffect 재실행
+
+  if (!isLoggedIn) {
+    return <div className="diagnosis-history-container">
+      <h2>진단 이력</h2>
+      <p>회원 사용자만 사용 가능합니다.</p> {/* 로그인 안 한 사용자에게 보여줄 메시지 */}
+    </div>;
+  }
 
   return (
     <div className="diagnosis-history-container">
