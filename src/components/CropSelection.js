@@ -13,6 +13,13 @@ function CropSelection({ selectedCrop, setSelectedCrop }) {
     return `crop-box ${crop} ${selectedCrop === crop ? 'active' : ''}`;
   };
 
+  const cropEnglishNames = {
+    딸기: 'STRAWBERRY',
+    고추: 'PEPPER',
+    토마토: 'TOMATO',
+    오이: 'CUCUMBER'
+  };
+
   const cropColors = {
     딸기: '#FF6384',
     고추: '#FF5722',
@@ -36,8 +43,8 @@ function CropSelection({ selectedCrop, setSelectedCrop }) {
           <div
             key={crop}
             className={getBoxClass(crop)}
-            onClick={() => setSelectedCrop(crop)}
-            style={{ borderColor: selectedCrop === crop ? cropColors[crop] : 'initial' }}
+            onClick={() => setSelectedCrop(cropEnglishNames[crop])}
+            style={{ borderColor: selectedCrop === cropEnglishNames[crop] ? cropColors[crop] : 'initial' }}
           >
             <img src={cropIcons[crop]} alt={crop} className="crop-icon" />
             {crop}
@@ -45,7 +52,7 @@ function CropSelection({ selectedCrop, setSelectedCrop }) {
         ))}
       </div>
       {selectedCrop && (
-        <h3 style={{ color: cropColors[selectedCrop] }}>선택한 작물: {selectedCrop}</h3>
+        <h3 style={{ color: cropColors[Object.keys(cropEnglishNames).find(key => cropEnglishNames[key] === selectedCrop)] }}>선택한 작물: {Object.keys(cropEnglishNames).find(key => cropEnglishNames[key] === selectedCrop)}</h3>
       )}
     </div>
   );

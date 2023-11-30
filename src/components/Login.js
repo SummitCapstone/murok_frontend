@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import './Login.css';
 
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
   const [countdownActive, setCountdownActive] = useState(false);
 
   // 로그인 관리
-  // const { login } = useAuth();
+  const { login } = useAuth();
 
   const navigate = useNavigate();
   const SERVER_URL = 'https://api.murok.munwon.net';
@@ -60,7 +60,7 @@ function Login() {
       // POST 요청을 통해 사용자가 입력한 인증번호를 서버에 보내고, 검증을 요청합니다.
       const response = await axios.post(`${SERVER_URL}/user/auth/token/`, {
         email,
-        code: verificationCode
+        token: verificationCode
       });
       // 서버로부터의 응답에서 JWT 토큰을 받아온다고 가정합니다.
       const { access_token, refresh_token } = response.data;
@@ -69,6 +69,7 @@ function Login() {
         // JWT를 로컬 스토리지에 저장합니다.
         localStorage.setItem('token', access_token);
         localStorage.setItem('refresh_token', refresh_token);
+        login({ email }); // 로그인 상태 업데이트
         navigate('/'); // 인증 성공 시 메인 페이지로 리디렉트합니다.
       } else {
         // 인증번호 불일치 또는 다른 오류 처리

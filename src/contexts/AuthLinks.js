@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import './AuthLinks.css';
 
 function AuthLinks() {
   const { currentUser, logout } = useAuth();
@@ -8,7 +9,7 @@ function AuthLinks() {
   return (
     <>
       {currentUser ? (
-        <button onClick={logout}>로그아웃</button>
+        <button onClick={logout} className="menu-item">로그아웃</button>
       ) : (
         <Link to="/login" className="menu-item">로그인</Link>
       )}

@@ -1,31 +1,59 @@
 import React, { useRef, useEffect, useMemo, useState } from 'react'; // useMemo 추가
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import Modal from './Modal'; // Modal 컴포넌트 임포트
 import ContactUs from './ContactUs'; // ContactUs 컴포넌트 임포트
 import './DiagnosisResult.css';
 
+// 랜덤 색상 생성 함수
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function DiagnosisResult() {
   const canvasRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation(); // useLocation 추가
   const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  // useMemo를 사용하여 data 배열 메모이제이션
-  const data = useMemo(() => [
-    { label: 'Item One', value: 10, color: 'black' },
-    { label: 'Item Two', value: 20, color: '#7F7F7F' },
-    { label: 'Item Three', value: 70, color: '#3F3F3F' }
-  ], []);
+  const [diagnosisData, setDiagnosisData] = useState(null); // 진단 데이터 상태 추가
+  const [data, setData] = useState([]);
+  const [imageURL, setImageURL] = useState(null);
 
   useEffect(() => {
+    if (location.state && location.state.data) {
+      const receivedData = location.state.data;
+      setDiagnosisData(receivedData);
+      
+      // 콘솔에 데이터 확인
+      console.log("Received Data:", receivedData);
+
+      // 이미지 URL 설정
+      if (receivedData.imageURL) {
+        setImageURL(receivedData.imageURL);
+      }
+
+      // 확률 데이터 변환 및 설정
+      if (receivedData.probability_ranking && receivedData.probability_ranking.crop_status_possibility_rank) {
+        const formattedData = receivedData.probability_ranking.crop_status_possibility_rank.map(item => ({
+          label: item.state,
+          value: parseFloat(item.probability), // 문자열을 숫자로 변환
+          color: getRandomColor()
+        }));
+        setData(formattedData);
+      }
+    } else {
+      navigate('/'); // 데이터가 없으면 홈으로 리다이렉트
+    }
+  }, [location, navigate]);
+
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
@@ -43,27 +71,29 @@ function DiagnosisResult() {
       ctx.fill();
       startAngle = endAngle;
     });
-  }, [data]); // useEffect의 의존성 배열에 data 추가
+  }, [data]);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   // '자세한 정보' 페이지로 이동하는 함수
   const goToDetailedInfo = () => {
-    // 테스트를 위해 직접 값을 설정
-    const testCropName = '오이';
-    const testSickNameKor = '흰가루병';
+    // diagnosisData와 diagnosisData.probability_ranking이 존재하는지 확인
+    if (!diagnosisData || !diagnosisData.probability_ranking || !diagnosisData.probability_ranking.crop_status_possibility_rank) {
+      alert('자세한 정보를 가져올 수 없습니다.');
+      return;
+    }
 
-    navigate('/detailed-info', { state: { cropName: testCropName, sickNameKor: testSickNameKor } });
+    const cropName = diagnosisData.crop_category;
+    const sickNameKor = diagnosisData.probability_ranking.crop_status_possibility_rank[0].state; // 가장 높은 확률의 상태
+
+    navigate('/detailed-info', { state: { cropName, sickNameKor } });
   };
-
-
-  // '자세한 정보' 페이지로 이동하는 함수
-  // const goToDetailedInfo = () => {
-  //   navigate('/detailed-info');
-  // };
-
-  // '문의하기' 페이지로 이동하는 함수 (삭제, 모달 사용)
-  // const goToContactUs = () => {
-  //   navigate('/contact');
-  // };
 
   // 진단 결과를 이미지로 저장하는 함수
   const saveDiagnosisAsImage = () => {
@@ -80,13 +110,17 @@ function DiagnosisResult() {
     <div className="diagnosis-result">
       <h2>진단 결과</h2>
       <div className="image-box">
-        이미지
+        {imageURL ? <img src={imageURL} alt="Crop Image" /> : '이미지를 불러오는 중...'}
       </div>
       <div className="diagram">
         <canvas ref={canvasRef} width={180} height={180}></canvas>
-        <div>
-          {data.map(item => (
-            <div key={item.label}>{item.label}: {item.value}%</div>
+        <div className="probability-ranking">
+          {data.map((item, index) => (
+            <div key={index} className="probability-item">
+              <span className="probability-label">{item.label}</span>
+              <span className="probability-value">{item.value}%</span>
+              <div className="probability-color" style={{ backgroundColor: item.color }}></div>
+            </div>
           ))}
         </div>
       </div>
