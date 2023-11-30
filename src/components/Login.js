@@ -18,7 +18,7 @@ function Login() {
   // const { login } = useAuth();
 
   const navigate = useNavigate();
-  const SERVER_URL = 'http://localhost:5000';
+  const SERVER_URL = 'http://127.0.0.1:8000';
 
   useEffect(() => {
     let interval = null;
@@ -40,7 +40,7 @@ function Login() {
     try {
       setLoading(true);
       // POST 요청을 통해 이메일을 서버에 보내고, 인증번호를 이메일로 발송하는 로직을 구현합니다.
-      await axios.post(`${SERVER_URL}/api/send-verification-code`, { email });
+      await axios.post(`${SERVER_URL}/user/auth/email/`, { email });
       // 카운트다운 시작
       setShowVerificationField(true);
       setCountdownActive(true);
@@ -58,16 +58,16 @@ function Login() {
     try {
       setLoading(true);
       // POST 요청을 통해 사용자가 입력한 인증번호를 서버에 보내고, 검증을 요청합니다.
-      const response = await axios.post(`${SERVER_URL}/api/verify-code`, {
+      const response = await axios.post(`${SERVER_URL}/user/auth/token/`, {
         email,
         code: verificationCode
       });
       // 서버로부터의 응답에서 JWT 토큰을 받아온다고 가정합니다.
-      const { token } = response.data;
-      if (token) {
+      const { access_token } = response.data;
+      if (access_token) {
         console.log("Verified successfully!");
         // JWT를 로컬 스토리지에 저장합니다.
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', access_token);
         navigate('/'); // 인증 성공 시 메인 페이지로 리디렉트합니다.
       } else {
         // 인증번호 불일치 또는 다른 오류 처리
@@ -78,6 +78,21 @@ function Login() {
       setError('인증 번호 검증에 실패했습니다.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // JWT Token Refresh 로직
+  const handleTokenRefresh = async () => {
+    try {
+      const response = await axios.post(`${SERVER_URL}/user/auth/token/refresh/`, {
+        refresh: localStorage.getItem('refresh_token')
+      });
+      const { access_token } = response.data;
+      localStorage.setItem('token', access_token);
+    } catch (error) {
+      console.error('Error refreshing token:', error);
+      // 로그인 만료 및 재로그인 필요 알림
+      setError('세션 만료. 다시 로그인해주세요.');
     }
   };
 
