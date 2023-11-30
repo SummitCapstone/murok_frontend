@@ -7,10 +7,10 @@ import './DiagnosisHistory.css';
 function DiagnosisHistory() {
   const [history, setHistory] = useState([]);
   const uuid = useContext(UuidContext); // UuidContext에서 UUID 가져오기
-  const { isLoggedIn } = useAuth();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (!currentUser) return;
 
     const SERVER_URL = 'https://api.murok.munwon.net';
 
@@ -23,9 +23,9 @@ function DiagnosisHistory() {
       setHistory(response.data);
     })
     .catch(error => console.error('Error fetching history:', error));
-  }, [uuid, isLoggedIn]); // UUID가 변경될 때마다 useEffect 재실행
+  }, [uuid, currentUser]); // UUID가 변경될 때마다 useEffect 재실행
 
-  if (!isLoggedIn) {
+  if (!currentUser) {
     return <div className="diagnosis-history-container">
       <h2>진단 이력</h2>
       <p>회원 사용자만 사용 가능합니다.</p> {/* 로그인 안 한 사용자에게 보여줄 메시지 */}
