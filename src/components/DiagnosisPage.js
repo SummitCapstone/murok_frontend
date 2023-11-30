@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CropSelection from './CropSelection';
 import ImageUpload from './ImageUpload';
-import axios from 'axios'; // 필요한 경우
-import './DiagnosisPage.css'; // 스타일시트 임포트
+import axios from 'axios';
+import './DiagnosisPage.css';
 
 function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelectedImage }) {
     // 컴포넌트 마운트 시 선택된 작물과 이미지 초기화
@@ -11,7 +11,7 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
         setSelectedCrop(null);
         setSelectedImage(null);
     }, [setSelectedCrop, setSelectedImage]);
-    
+
     const navigate = useNavigate();
 
     const handleDiagnosis = async () => {
@@ -20,14 +20,18 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
             return;
         }
 
-        navigate("/diagnosis-result");
+        // navigate("/diagnosis-result");
 
         const formData = new FormData();
         formData.append('crop', selectedCrop);
         formData.append('image', selectedImage);
 
         try {
-            const response = await axios.post('YOUR_SERVER_ENDPOINT', formData);
+            const response = await axios.post('https://api.murok.munwon.net/diagnosis', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             const data = response.data;
             navigate("/diagnosis-result", { state: { data } });
         } catch (error) {

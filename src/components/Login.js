@@ -18,7 +18,7 @@ function Login() {
   // const { login } = useAuth();
 
   const navigate = useNavigate();
-  const SERVER_URL = 'http://127.0.0.1:8000';
+  const SERVER_URL = 'https://api.murok.munwon.net';
 
   useEffect(() => {
     let interval = null;
@@ -121,7 +121,7 @@ function Login() {
             onChange={e => setEmail(e.target.value)}
           />
         </label>
-        <button onClick={() => handleRequestVerification(true)} disabled={loading || showVerificationField}>
+        <button onClick={() => handleRequestVerification()} disabled={loading || showVerificationField}>
           {loading ? '확인 중...' : '인증번호 받기'}
         </button>
       </div>
