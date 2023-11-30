@@ -28,7 +28,7 @@ function DiagnosisHistory() {
   if (!currentUser) {
     return <div className="diagnosis-history-container">
       <h2>진단 이력</h2>
-      <p>회원가입한 사용자만 사용할 수 있습니다.</p> {/* 로그인 안 한 사용자에게 보여줄 메시지 */}
+      <p>회원가입한 사용자만 이용할 수 있습니다.</p> {/* 로그인 안 한 사용자에게 보여줄 메시지 */}
     </div>;
   }
 
