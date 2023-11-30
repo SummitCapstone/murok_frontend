@@ -63,11 +63,12 @@ function Login() {
         code: verificationCode
       });
       // 서버로부터의 응답에서 JWT 토큰을 받아온다고 가정합니다.
-      const { access_token } = response.data;
+      const { access_token, refresh_token } = response.data;
       if (access_token) {
         console.log("Verified successfully!");
         // JWT를 로컬 스토리지에 저장합니다.
         localStorage.setItem('token', access_token);
+        localStorage.setItem('refresh_token', refresh_token);
         navigate('/'); // 인증 성공 시 메인 페이지로 리디렉트합니다.
       } else {
         // 인증번호 불일치 또는 다른 오류 처리
@@ -99,6 +100,9 @@ function Login() {
 
   // 타이머를 MM:SS 형식으로 표시하는 함수
   const formatTimer = () => {
+    if (timer === 0) {
+      return '인증 시간 만료. 다시 시도해 주세요.';
+    }
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
