@@ -18,6 +18,14 @@ function getRandomColor() {
   return color;
 }
 
+// 작물의 영어 이름과 한글 이름 매핑
+const cropNameMapping = {
+  "strawberry": "딸기",
+  "cucumber": "오이",
+  "tomato": "토마토",
+  "pepper": "고추",
+};
+
 function DiagnosisResult() {
   const canvasRef = useRef(null);
   const location = useLocation(); // useLocation 추가
@@ -63,6 +71,13 @@ function DiagnosisResult() {
                 value: parseFloat(item.probability),
                 color: getRandomColor()
               }));
+            // 작물 이름을 한글로 변환
+            const translatedCropName = cropNameMapping[reportData.crop_category] || reportData.crop_category;
+
+            setDiagnosisData({
+              ...reportData,
+              crop_category: translatedCropName
+            });
             setData(topThreeData);
           } else {
             console.log("No probability ranking data available");
