@@ -10,8 +10,18 @@
   padding: 20px;
   margin: 10px 0;
   width: 80%;
+  transition: box-shadow 0.3s; /* 박스 그림자 효과를 부드럽게 전환 */
+}
+
+.diagnosis-box:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 마우스를 올렸을 때 박스 그림자 추가 */
 }
 
 .diagnosis-title, .diagnosis-date {
   margin-bottom: 10px;
+}
+
+.diagnosis-title:hover {
+  cursor: pointer; /* 마우스 포인터가 타이틀 위에 올라갔을 때 포인터 모양 변경 */
+  text-decoration: underline; /* 타이틀에 밑줄 표시 */
 }

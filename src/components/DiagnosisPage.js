@@ -31,7 +31,7 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
             const response = await axios.post('https://api.murok.munwon.net/diagnosis/request/', formData, {
                 headers: {
                     'X-Request-Id': uuidv4(), // 첫 번째 UUID 생성
-                    'X-Request-User-Id': uuid, // 두 번째 UUID 생성
+                    'X-Request-User-Id': uuid,
                 }
             });
             const data = response.data;
