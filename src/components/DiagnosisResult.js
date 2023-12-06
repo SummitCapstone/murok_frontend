@@ -146,7 +146,7 @@ function DiagnosisResult() {
 
   // '자세한 정보' 페이지로 이동하는 함수
   const goToDetailedInfo = () => {
-    if (!diagnosisData || !diagnosisData.probability_ranking || !diagnosisData.probability_ranking.crop_status_possibility_rank) {
+    if (!diagnosisData || !diagnosisData.probability_ranking) {
       alert('자세한 정보를 가져올 수 없습니다.');
       return;
     }
@@ -206,7 +206,7 @@ function DiagnosisResult() {
           <Modal show={showDetailedModal} onClose={closeDetailedModal}>
             <DetailedInfo
               cropName={diagnosisData.crop_category}
-              sickNameKor={diagnosisData.probability_ranking.crop_status_possibility_rank[0].state}
+              sickNameKor={diagnosisData.probability_ranking[0].state} // 가장 확률이 높은 질병의 이름을 전달
             />
           </Modal>
         )}
