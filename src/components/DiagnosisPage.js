@@ -35,6 +35,7 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
                 }
             });
             const data = response.data;
+            console.log(response.data);
             console.log("Verified successfully!");
             navigate("/diagnosis-result", { state: { data, selectedImage } });
         } catch (error) {

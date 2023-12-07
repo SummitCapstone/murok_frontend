@@ -12,7 +12,7 @@ function ImageUpload({ setSelectedImage }) {
     if (file) {
       // 지원되는 이미지 형식인지 확인
       if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
-        setErrorMessage('지원하지 않는 형식의 파일입니다.\njpg, jpeg, png 형식만 지원합니다.');
+        setErrorMessage('지원하지 않는 형식의 파일입니다. jpg, jpeg, png 형식만 지원합니다.');
         return; // 지원되지 않는 형식일 경우 함수 종료
       }
 

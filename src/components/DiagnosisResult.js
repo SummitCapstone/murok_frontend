@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from 'react'; // useMemo 추가
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import Modal from './Modal'; // Modal 컴포넌트 임포트
 import ContactUs from './ContactUs'; // ContactUs 컴포넌트 임포트
@@ -37,6 +37,10 @@ function DiagnosisResult() {
   const [displayData, setDisplayData] = useState([]);
   const uuid = useContext(UuidContext);
 
+  // 오류 메시지 상태와 페이지 이동 함수 추가
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
   // location에서 사용자가 선택한 이미지 받아오기
   const selectedImage = location.state && location.state.selectedImage
     ? URL.createObjectURL(location.state.selectedImage)
@@ -64,6 +68,19 @@ function DiagnosisResult() {
           }
 
           if (reportData.probability_ranking && reportData.probability_ranking.length > 0) {
+            // 1순위 질병의 확률이 85% 미만일 경우
+            if (reportData.probability_ranking[0].probability < 0.85) {
+              setErrorMessage(
+                `진단 결과가 명확하지 않습니다.<br/><br/>
+                진단 결과가 명확하지 않을 수 있는 이유는 다음과 같습니다.<br/>
+                1. 선택한 작물 종류와 이미지가 일치하지 않는 경우<br/>
+                2. 지원하지 않는 병해로 진단이 불가능한 경우<br/>
+                3. 사진이 부적절하게 찍힌 경우<br/><br/>
+                다시 진단을 시작해주세요.`
+              );
+              // setTimeout(() => navigate('/start-diagnosis'), 5000); // Navigate after 5 seconds
+            }
+
             const topThreeData = reportData.probability_ranking
               .slice(0, 3)
               .map(item => ({
@@ -89,7 +106,7 @@ function DiagnosisResult() {
     };
 
     fetchReportData();
-  }, [location.state, uuid]);
+  }, [location.state, uuid, navigate]);
 
   useEffect(() => {
     if (!canvasRef.current || data.length === 0) return;
@@ -140,9 +157,6 @@ function DiagnosisResult() {
     setDisplayData(updatedData);
   }, [data]); // 의존성 배열에 data만 포함
 
-
-
-
   const openModal = () => {
     setShowModal(true);
   };
@@ -157,6 +171,11 @@ function DiagnosisResult() {
 
   const closeDetailedModal = () => {
     setShowDetailedModal(false);
+  };
+
+  const handleModalClose = () => {
+    setErrorMessage('');
+    navigate('/start-diagnosis');
   };
 
   // '자세한 정보' 페이지로 이동하는 함수
@@ -181,6 +200,11 @@ function DiagnosisResult() {
 
   return (
     <div className="diagnosis-result">
+      {errorMessage && (
+        <Modal show={true} onClose={handleModalClose}>
+          <div dangerouslySetInnerHTML={{ __html: errorMessage }} style={{ textAlign: 'center' }}></div>
+        </Modal>
+      )}
       <h2>진단 결과</h2>
       <div className="image-container">
         <div className="user-image-box">
