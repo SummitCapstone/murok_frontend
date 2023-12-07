@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import Modal from './Modal'; // Modal 컴포넌트 임포트
 import ContactUs from './ContactUs'; // ContactUs 컴포넌트 임포트
 import DetailedInfo from './DetailedInfo';
+import diseasesData from './diseasesData'; // diseasesData 임포트
 import axios from 'axios';
 import { UuidContext } from '../contexts/UuidContext';
 import './DiagnosisResult.css';
@@ -47,6 +48,29 @@ function DiagnosisResult() {
     : null;
 
 
+  // 이미지 URL을 Base64 문자열로 변환하는 함수
+  const convertImageToBase64 = (url, callback) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous'; // CORS 정책 우회
+    img.onload = () => {
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
+      canvas.height = img.naturalHeight;
+      canvas.width = img.naturalWidth;
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+      callback(dataURL);
+      canvas = null;
+    };
+    img.src = url;
+    // URL이 데이터 URL이 아닐 경우 에러 방지를 위해 설정
+    if (img.complete || img.complete === undefined) {
+      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.src = url;
+    }
+  };
+
+
   useEffect(() => {
     // 서버로부터 받은 result_url을 사용하여 추가 데이터 요청
     const fetchReportData = async () => {
@@ -63,8 +87,21 @@ function DiagnosisResult() {
           setDiagnosisData(reportData);
           console.log('Report Data:', reportData);
 
-          if (reportData.imageURL) {
-            setImageURL(reportData.imageURL);
+          if (reportData) {
+            // 영어 작물 이름을 한글로 변환
+            const translatedCropName = cropNameMapping[reportData.crop_category] || reportData.crop_category;
+
+            // 한글 작물 이름과 질병 이름으로 thumbImg URL 찾기
+            const diseaseInfo = diseasesData.find(d =>
+              d.cropName === translatedCropName &&
+              d.sickNameKor === reportData.probability_ranking[0].state
+            );
+
+            if (diseaseInfo && diseaseInfo.thumbImg) {
+              convertImageToBase64(diseaseInfo.thumbImg, (base64Img) => {
+                setImageURL(base64Img);
+              });
+            }
           }
 
           if (reportData.probability_ranking && reportData.probability_ranking.length > 0) {
