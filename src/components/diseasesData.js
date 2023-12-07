@@ -109,7 +109,7 @@ const diseasesData = [
     },
     {
         "cropName": "토마토",
-        "sickNameKor": "다량원소결핍N",
+        "sickNameKor": "다량원소결핍(N)",
         "sickNameEng": "Macronutrient Deficiency Nitrogen",
         "developmentCondition": "토양이 모래나 가벼운 구조를 가지며 침출이 발생하는 경우, 유기 물질이 부족한 경우에 발생할 수 있다.<br/>이 외에도 가뭄으로 인한 수분 부족, 높은 강우량 또는 높은 관계로 인한 침출, 분해되지 않은 유기물이나 퇴비(예: 짚)의 과다 사용, 식물이 빠르게 성장하여 질소 공급이 따라가지 못하는 경우 등으로 인해 나타날 수 있다.",
         "preventionMethod": "- 질소 비료를 주되 저온기에는 초산계 비료를 공급한다.<br/>\n- 완숙퇴비나 유기질비료 공급량을 증대한다.",
@@ -120,7 +120,7 @@ const diseasesData = [
     },
     {
         "cropName": "토마토",
-        "sickNameKor": "다량원소결핍P",
+        "sickNameKor": "다량원소결핍(P)",
         "sickNameEng": "Macronutrient Deficiency Phosphorus",
         "developmentCondition": "토양이 인산이 부족하거나 pH가 적절하지 않은 경우 토마토가 인산에 접근하기 어려울 수 있다.<br/>토마토의 뿌리가 손상되면 인산의 흡수가 저해될 수 있다.",
         "preventionMethod": "- 토양 중 인산부족(20mg/건토100g)인 경우, 인산 비료질을 공급한다.<br/>\n- 육묘기 300평당 인산(P205)100~1500ppm 정도 공급한다.",
@@ -131,7 +131,7 @@ const diseasesData = [
     },
     {
         "cropName": "토마토",
-        "sickNameKor": "다량원소결핍K",
+        "sickNameKor": "다량원소결핍(K)",
         "sickNameEng": "Macronutrient Deficiency Potassium",
         "developmentCondition": "토양 중 칼륨(칼리) 함량이 낮거나 과실 비대가 왕성해져 흡수량이 공급량보다 많은 경우 발생할 수 있다.<br/>석회비료의 과용으로 칼륨(칼리) 흡수가 저해되는 경우 발생할 수 있다.",
         "preventionMethod": "- 칼륨(칼리) 비료를 공급한다.<br/>\n- 특히 생육 중.후기(과실비대기)에 공급한다.<br/>\n- 토양 중 유기물 함량을 증대시킨다.",
@@ -142,7 +142,7 @@ const diseasesData = [
     },
     {
         "cropName": "고추",
-        "sickNameKor": "다량원소결핍N",
+        "sickNameKor": "다량원소결핍(N)",
         "sickNameEng": "Macronutrient Deficiency Nitrogen",
         "developmentCondition": "토양이 모래나 가벼운 구조를 가지며 침출이 발생하는 경우, 유기 물질이 부족한 경우, 가뭄으로 인한 수분 부족, 높은 강우량 또는 높은 관계로 인한 침출, 분해되지 않은 유기물이나 퇴비(예: 짚)의 과다 사용, 식물이 빠르게 성장하여 질소 공급이 따라가지 못하는 경우 등으로 인해 나타날 수 있다.",
         "preventionMethod": "- 응급 대책으로는 요소 0.5%액을 일주일 간격으로 몇 차례 살포하거나 알맞은 양의 질소비료를 물에 녹여 관비 한다.<br/>\n- 모래땅과 같이 질소가 유실되기 쉬운 곳에는 시 비 횟수를 늘려 여러번에 나누어 사용함으로써 비료 이용률을 높인다.<br/>\n- 토양에 줄 때에는 암모니아태 질소는 토양 표면에 흡착되어 뿌리로 바로 흡수되지 않으므로 질산태질소가 바람직하다.<br/>\n- 가장 중요한 것은 신선 유기물 시용과 함께 동반되는 질소기아를 막는 것과 볏짚을 다량 시용할 때에는 질소비료를 증시해준다.<br/>\n- 질소비료의 시용에 주의한다.<br/>\n- 저온기에는 질산태 질소비료의 시용이 유효하다.<br/>\n- 완숙 퇴비 등을 시용해서 지력을 높이는 것이 필요하다.",
@@ -153,7 +153,7 @@ const diseasesData = [
     },
     {
         "cropName": "고추",
-        "sickNameKor": "다량원소결핍P",
+        "sickNameKor": "다량원소결핍(P)",
         "sickNameEng": "Macronutrient Deficiency Phosphorus",
         "developmentCondition": "산성 또는 고알칼리성 토양, 낮은 유기 물질 온도가 낮거나 습한 상태, 뿌리 성장이 나쁜 작물, 낮은 인산 함유 토양, 높은 인산염 수용 토양, 철이 풍부한 토양",
         "preventionMethod": "- 응급 대책으로는 제1인산칼리 0.3%를 몇 차례 옆면 살포 한다.<br/>\n- 배양액에 인산칼슘 또는 제1인산암모늄으로 보충해준다.<br/>\n- 기본적으로는 산 성 토양 개량 및 인산 함량을 높이는 등 토양 개선을 꾀한다.<br/>\n- 퇴비와 혼용해 인산이 토양에 고정되는 비율을 줄이거나 뿌리에 인산 비료가 닿도록 시비 위치에 신경 쓸 필요가 있다.<br/>\n- 거름 등을 충분히 사용하도록 한다.",
@@ -164,7 +164,7 @@ const diseasesData = [
     },
     {
         "cropName": "고추",
-        "sickNameKor": "다량원소결핍K",
+        "sickNameKor": "다량원소결핍(K)",
         "sickNameEng": "Macronutrient Deficiency Potassium",
         "developmentCondition": "산성 토양이 낮은 모래나 가벼운 토양 침출, 가뭄, 높은 강우량(침출) 또는 높은 관개량, 비중이 높은 점토(일라이트/백운모와 비슷한 점토 중 하나)토양, 낮은 칼륨 함유 토양, 마그네슘이 풍부한 토양",
         "preventionMethod": "- 응급 대책으로는 나르겐 600~800배액이나 히이포넥스 800배액을 적당한 양으로 3~4일 간격으로 3~4회 엽면 시비하면 회복할 수 있다.<br/>\n- 황산칼리 2% 용액을 엽면 살포하거나 배양액에 황산칼리를 보충해준다. 용수가 나트륨 이온을 함유하고 있지 않을 때에는 염화칼리를 보충해주어도 좋다.<br/>\n- 칼리비료의 충분한 시용, 특히 생육 중~후기에 부족하지 않도록 추비를 실시한다.<br/>\n- 칼리흡수량은 질소의 50%정도 더 많으므로 시비량 결정시 고려한다.<br/>\n- 퇴비 등 유기질 자재를 충분히 사용하도록 한다.<br/>\n- 결핍증이 발생할 염려가 있을 때에는 칼리비료를 5~7kg/10a추비한다.<br/>\n- 산성토양이면 웃거름으로 염화칼리를 주고 중성에 가까우면 황산칼리를 약하게 자주 시용한다.",
@@ -175,7 +175,7 @@ const diseasesData = [
     },
     {
         "cropName": "오이",
-        "sickNameKor": "다량원소결핍N",
+        "sickNameKor": "다량원소결핍(N)",
         "sickNameEng": "Macronutrient Deficiency Nitrogen",
         "developmentCondition": "토양의 질소 부족, 토양 pH의 불균형, 과도한 수분, 질소와 다른 영양소 간의 불균형",
         "preventionMethod": "- 적절한 비료 사용<br/>\n- 토양 검사<br/>\n- pH 조절(일반적으로 6.0~7.0)<br/>\n- 물 관리<br/>\n- 작물 순환 및 피복재배",
@@ -186,7 +186,7 @@ const diseasesData = [
     },
     {
         "cropName": "오이",
-        "sickNameKor": "다량원소결핍P",
+        "sickNameKor": "다량원소결핍(P)",
         "sickNameEng": "Macronutrient Deficiency Phosphorus",
         "developmentCondition": "토양의 인 부족, 토양 pH의 불균형, 과도한 칼슘 또는 기타 영양소",
         "preventionMethod": "- 인 함량이 적절한 비료를 사용한다.<br/>\n- 토양을 정기적으로 검사한다.<br/>\n- 토양의 pH를 적절한 범위로 유지하여 인의 흡수를 최적화한다.<br/>\n- <유기물이 풍부한 퇴비나 퇴비를 추가하여 토양 구조를 개선하고 인의 가용성을 높인다.",
@@ -197,7 +197,7 @@ const diseasesData = [
     },
     {
         "cropName": "오이",
-        "sickNameKor": "다량원소결핍K",
+        "sickNameKor": "다량원소결핍(K)",
         "sickNameEng": "Macronutrient Deficiency Potassium",
         "developmentCondition": "토양의 칼륨 부족, 토양의 높은 pH, 과도한 질소 또는 마그네슘",
         "preventionMethod": "- 칼륨 함량이 높은 비료를 사용하여 토양의 칼륨 수준을 유지한다.<br/>\n- 정기적을 토양을 검사한다.<br/>\n- pH를 적절한 범위로 유지하여 칼륨의 흡수를 최적화한다.<br/>\n- 과도한 물을 주지 않도록 하여 토양 내 칼륨이 씻겨나가는 것을 방지한다.",
@@ -230,7 +230,7 @@ const diseasesData = [
     },
     {
         "cropName": "딸기",
-        "sickNameKor": "다량원소결핍N",
+        "sickNameKor": "다량원소결핍(N)",
         "sickNameEng": "Macronutrient Deficiency Nitrogen",
         "developmentCondition": "비료 부족이 주 원인이다.<br/>그 밖에 부식함량이 적은 사질 토양 사용, 미숙 유기물 다량 사용 시 질소 결핍이 유발될 수 있다.",
         "preventionMethod": "- 하우스 재배에서 비료를 계획적으로 사용하고, 퇴비를 이용하여 토양의 영양을 풍부하게 유지한다.<br/>\n- 응급 대책으로는 요소 0.5%액을 일주일 간격으로 몇 차례 엽면 살포하거나 물에 녹여 토양에 관주한다.",
@@ -241,7 +241,7 @@ const diseasesData = [
     },
     {
         "cropName": "딸기",
-        "sickNameKor": "다량원소결핍P",
+        "sickNameKor": "다량원소결핍(P)",
         "sickNameEng": "Macronutrient Deficiency Phosphorus",
         "developmentCondition": "토양의 인산함량이 결핍된 경우에 발생할 수 있다.<br/>철, 알루미늄이 활성화 된 산성 토양에서는 인산 흡수가 낮아져 결핍이 발생한다.",
         "preventionMethod": "- 산성 토양을 개선하고 인산 비료 투입량을 높여 토양을 개선한다.<br/>\n- 토양 중에 인산이 존재하더라도 마그네슘(Mg)이 부족하면 인산의 흡수가 원활하지 않은 경우가 존재하므로 필요에 따라 고토석회를 인산과 동시에 사용한다.",
@@ -252,7 +252,7 @@ const diseasesData = [
     },
     {
         "cropName": "딸기",
-        "sickNameKor": "다량원소결핍K",
+        "sickNameKor": "다량원소결핍(K)",
         "sickNameEng": "Macronutrient Deficiency Potassium",
         "developmentCondition": "토양 중에서 유실이 쉽게 발생하며 웃거름을 자주 하지 못하면 생육 후기에 칼슘(칼리) 결핍 증상이 나타날 수 있다.<br/>토양에 모래 입자와 점토의 함유 비율이 높을수록(사질 토양) 증상이 잘 발생한다.",
         "preventionMethod": "- 토양에 칼륨(칼리) 비료 투입량을 높여 토양을 개선하는데, 이때 일시에 많은 양의 칼슘(칼리) 비료를 사용할 경우 마그네슘(Mg) 결핍이 발생할 수 있다.<br/>\n- 제1인산 칼륨(칼리) 0.3%액을 엽면에 살포하거나 토양 관주를 실시한다.<br/>\n- 사질 토양에서는 1회의 사용량을 줄이고 소량씩 자주 사용하는 것이 유리하다.",
