@@ -40,6 +40,17 @@ function DiagnosisPage({ selectedCrop, setSelectedCrop, selectedImage, setSelect
             navigate("/diagnosis-result", { state: { data, selectedImage } });
         } catch (error) {
             console.error('Error:', error);
+            // 에러 처리 로직
+            if (!error.response) {
+                // 서버에 응답이 없을 경우 (서버가 닫혀 있거나 네트워크 오류 등)
+                alert('서버에 연결할 수 없습니다. 네트워크 상태를 확인하거나 나중에 다시 시도해주세요.');
+            } else if (error.response.status === 413) {
+                // 파일이 너무 큰 경우 (413 Payload Too Large)
+                alert('파일이 너무 큽니다. 작은 파일로 시도해주세요.');
+            } else {
+                // 그 외 다른 오류
+                alert('오류가 발생했습니다. 나중에 다시 시도해주세요.');
+            }
         }
     };
 
